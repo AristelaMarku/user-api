@@ -11,13 +11,13 @@ export class User {
   id: string; 
 
   @Column()
-  firstName!: string;
+  firstName: string;
 
   @Column()
-  lastName!: string;
+  lastName: string;
 
   @Column({ unique: true })
-  email!: string;
+  email: string;
 
   @Column({ nullable: true })
   city?: string;

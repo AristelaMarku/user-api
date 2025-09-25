@@ -8,7 +8,6 @@ import { User, UserRole } from './entities/user.entity';
 
 /**
  * UserController
- * ----------------
  * Handles all HTTP requests related to the User entity.
  * Each endpoint corresponds to a CRUD operation or a filtered query.
  * Uses Swagger decorators to document the API.
@@ -26,7 +25,7 @@ export class UserController {
   @Post()
   @ApiOperation({ summary: 'Create a new user' })
   @ApiBody({ type: CreateUserDto, description: 'User creation payload' })
-  @ApiResponse({ status: 201, description: 'The user has been successfully created.', type: User })
+  @ApiResponse({ status: 201, description: 'The user has been successfully created.'})
   @ApiResponse({ status: 400, description: 'Invalid input' })
   create(@Body() body: CreateUserDto): Promise<User> {
     return this.userService.create(body);
@@ -38,7 +37,7 @@ export class UserController {
    */
   @Get()
   @ApiOperation({ summary: 'Retrieve all users' })
-  @ApiResponse({ status: 200, description: 'List of users retrieved successfully', type: [User] })
+  @ApiResponse({ status: 200, description: 'List of users retrieved successfully'})
   findAll(): Promise<User[]> {
     return this.userService.findAll();
   }
@@ -51,7 +50,7 @@ export class UserController {
   @Get('city/:city')
   @ApiOperation({ summary: 'Retrieve users by city' })
   @ApiParam({ name: 'city', description: 'City name to filter users' })
-  @ApiResponse({ status: 200, description: 'List of users filtered by city', type: [User] })
+  @ApiResponse({ status: 200, description: 'List of users filtered by city' })
   @ApiResponse({ status: 404, description: 'No users found in this city' })
   async findByCity(@Param('city') city: string): Promise<User[]> {
       const users = await this.userService.findByCity(city);
@@ -69,7 +68,7 @@ export class UserController {
   @Get('role/:role')
   @ApiOperation({ summary: 'Get all users by role' })
   @ApiParam({ name: 'role', description: 'Role of the users to filter', enum: UserRole })
-  @ApiResponse({ status: 200, description: 'List of users filtered by role', type: [User] })
+  @ApiResponse({ status: 200, description: 'List of users filtered by role'})
   @ApiResponse({ status: 404, description: 'No users found with this role' })
   async findByRole(@Param('role') role: UserRole): Promise<User[]> {
     const users = await this.userService.findByRole(role);
