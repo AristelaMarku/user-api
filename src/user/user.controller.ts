@@ -5,11 +5,24 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User, UserRole } from './entities/user.entity';
 
+
+/**
+ * UserController
+ * ----------------
+ * Handles all HTTP requests related to the User entity.
+ * Each endpoint corresponds to a CRUD operation or a filtered query.
+ * Uses Swagger decorators to document the API.
+ */
+
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  /**
+   * Create a new user
+   * POST /users
+   */
   @Post()
   @ApiOperation({ summary: 'Create a new user' })
   @ApiBody({ type: CreateUserDto, description: 'User creation payload' })
@@ -19,13 +32,22 @@ export class UserController {
     return this.userService.create(body);
   }
 
+  /**
+   * Get all users
+   * GET /users
+   */
   @Get()
   @ApiOperation({ summary: 'Retrieve all users' })
   @ApiResponse({ status: 200, description: 'List of users retrieved successfully', type: [User] })
   findAll(): Promise<User[]> {
     return this.userService.findAll();
   }
-
+  
+   /**
+   * Get users by city (partial match)
+   * GET /users/city/:city
+   * @param city - City name to filter users
+   */
   @Get('city/:city')
   @ApiOperation({ summary: 'Retrieve users by city' })
   @ApiParam({ name: 'city', description: 'City name to filter users' })
@@ -39,6 +61,11 @@ export class UserController {
     return users;
   }
 
+  /**
+   * Get users by role
+   * GET /users/role/:role
+   * @param role - Role to filter users (enum: UserRole)
+   */
   @Get('role/:role')
   @ApiOperation({ summary: 'Get all users by role' })
   @ApiParam({ name: 'role', description: 'Role of the users to filter', enum: UserRole })
@@ -52,6 +79,12 @@ export class UserController {
     return users;
   }
 
+   /**
+   * Update a user
+   * PATCH /users/:id
+   * @param id - User ID
+   * @param body - Partial user object to update
+   */
   @Patch(':id')
   @ApiOperation({ summary: 'Update a user by ID' })
   @ApiParam({ name: 'id', description: 'Unique identifier of the user' })
@@ -62,6 +95,11 @@ export class UserController {
     return this.userService.update(id, body);
   }
 
+  /**
+   * Delete a user
+   * DELETE /users/:id
+   * @param id - User ID
+   */
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a user by ID' })
   @ApiParam({ name: 'id', description: 'Unique identifier of the user' })

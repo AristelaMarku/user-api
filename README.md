@@ -2,7 +2,7 @@ User API
 
 A simple NestJS + TypeORM + PostgreSQL project that provides a REST API for managing users.
 
-This project was built as a take-home assignment to demonstrate clean architecture, TypeScript best practices, Swagger documentation, and testing with Jest.
+This project was built with TypeScript, Swagger documentation, and testing with Jest.
 
 Features
 
@@ -18,30 +18,31 @@ Update User – Update user details by ID.
 
 Delete User – Remove a user by ID.
 
-Swagger Documentation – Auto-generated API docs available at [/api/docs](http://localhost:3000/api/docs).
+Swagger Documentation – Auto-generated API docs available at [/api/docs](http://localhost:3000/api).
 
 
 Tech Stack
-NestJS
- – Node.js framework
-TypeORM
- – ORM for database access
-PostgreSQL
- – Relational database
-TypeScript
- – Strong typing support
-Jest
- – Testing framework
-Swagger
- – API documentation
+NestJS => Node.js framework
+
+TypeORM => ORM for database access
+PostgreSQL => Relational database
+TypeScript => Strong typing
+Jest => Testing framework
+Swagger => API documentation
 
 
 API Endpoints
-Users
+
 Method	Endpoint	Description
+
 POST	/users	Create a new user
+
 GET	/users	Get all users
+
 GET	/users/city/:city	Get users by city
-GET	/users?role=ADMIN	Get users filtered by role
+
+GET	/users/role/:role	Get users filtered by role
+
 PATCH	/users/:id	Update user by ID
+
 DELETE	/users/:id	Delete user by ID

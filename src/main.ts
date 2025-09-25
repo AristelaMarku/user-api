@@ -14,6 +14,7 @@ async function bootstrap() {
     }),
   );
 
+ //Swagger provides an interactive API documentation for your endpoints.
   const config = new DocumentBuilder()
     .setTitle('User API')
     .setDescription('API for managing users')
@@ -21,7 +22,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-
+  
+  // Start listening for incoming HTTP requests on port 3000
   await app.listen(3000);
 }
 bootstrap();
