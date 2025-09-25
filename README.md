@@ -18,7 +18,7 @@ Update User – Update user details by ID.
 
 Delete User – Remove a user by ID.
 
-Swagger Documentation – Auto-generated API docs available at [/api/docs](http://localhost:3000/api).
+Swagger Documentation – Auto-generated API docs available at [/api](http://localhost:3000/api).
 
 
 Tech Stack
